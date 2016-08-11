@@ -1,0 +1,552 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>krpano - pano_sphere</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<style>
+		@-ms-viewport { width:device-width; }
+		@media only screen and (min-device-width:800px) { html { overflow:hidden; } }
+		html { height:100%; }
+		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.list{
+			width: 248px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 999999999999;
+			transform: translate3d(-248px, 0, 0);
+		}
+		.list h2{
+			font-size: 24px;
+			color: #fff;
+			text-align: center;
+			line-height: 68px;
+			background-color: rgba(0, 0, 0, .8);
+		}
+		.listCon{
+			width: 100%;
+			height: 700px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: flex;
+		}
+		.listTit{
+			width: 96px;
+			height: 100%;
+			background-color: #ccc;
+		}
+		.listTit li{
+			line-height: 68px;
+			text-align: center;
+			font-size: 20px;
+			color: #252525;
+			background: url("../images/line.png") no-repeat left top;
+			background-size: 100% auto;
+		}
+		.listTit li.cur{
+			background-color: #262626;
+			color: #fff;
+		}
+
+		.listImg{
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			   -moz-box-flex: 1;
+			    -ms-flex: 1;
+			        flex: 1;
+			background-color: #fff;
+		}
+		.rows{
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, .8);
+			display: none;
+			overflow-y: auto;
+		}
+		.rows li{
+			padding: 20px 0;
+			height: 78px;
+			text-align: center;
+			background: url("../images/line.png") no-repeat left bottom;
+			background-size: 100% auto;
+		}
+		.rows li img{
+			width: 100px;
+			height: 56px;
+		}
+		.rows li p{
+			line-height: 30px;
+			font-size: 14px;
+			color: #fff;
+		}
+		/* 确定按钮 */
+		.confirmBtn{
+			display: inline-block;
+			position: absolute;
+			width: 194px;
+			line-height: 90px;
+			text-align: center;
+			background: url("../images/button_enter.png") no-repeat center center;
+			background-size: 100% 100%;
+			font-size: 28px;
+			color: #F0EAE3;
+			text-shadow: 1px 1px 1px #ccc;
+			z-index: 9999999999;
+			transform: translate3d(1790px, 630px, 0);
+		}
+		.confirmBtn:hover{	
+			background: url("../images/button_enter2.png") no-repeat center center;
+			background-size: 100% 100%;
+		}
+	</style>
+</head>
+<body>
+
+<script src="tour.js"></script>
+
+<div id="pano" style="width:100%;height:100%;">
+	<div class="list" id="list">
+			<h2>厨电选择</h2>
+			<div class="listCon">
+				<ul class="listTit" id="listTit">
+					<li id="aa" data-type="aa">灶&nbsp;&nbsp;&nbsp;&nbsp;具</li>
+					<li id="bb" data-type="bb">烟&nbsp;&nbsp;&nbsp;&nbsp;机</li>
+					<li id="cc" data-type="cc">消毒柜</li>
+					<li data-type="dd">蒸&nbsp;&nbsp;&nbsp;&nbsp;箱</li>
+					<li data-type="ee">烤&nbsp;&nbsp;&nbsp;&nbsp;箱</li>
+					<li data-type="ff">洗碗机</li>
+					<li data-type="gg">微波炉</li>
+					<li data-type="hh">电冰箱</li>
+					<li data-type="ii">热水器</li>
+				</ul>
+				<div class="listImg">
+					<ul class="rows" id="aaImg">
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li data-type="aa">
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="aa">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+					</ul>
+					<ul class="rows" id="bbImg">
+						<li data-type="bb">
+							<img src="../images/chufang_X.png" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li data-type="bb">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li  data-type="bb">
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+					</ul>
+					<ul class="rows" id="ccImg">
+						<li data-type="cc">
+							<img src="../images/chufang_T.png" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+					</ul>
+					<ul class="rows">
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+					</ul>
+					<ul class="rows">
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+					</ul>
+					<ul class="rows">
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+					</ul>
+					<ul class="rows">
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+					</ul>
+					<ul class="rows">
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+						<li>
+							<img src="../images/chuju.jpg" alt="">
+							<p>CXW-200-EM02T</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<span class="confirmBtn">确 定</span>
+	<noscript><table style="width:100%;height:100%;"><tr style="vertical-align:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+	<script src="../src/jquery.js"></script>
+	<script>
+		embedpano({swf:"tour.swf", xml:"tour.xml", target:"pano", html5:"prefer", mobilescale:1.0, passQueryParameters:true});
+		//var krpano = document.getElementById("krpanoSWFObject");
+		//krpano.call("empChangeHotSpotUrl('spot1','images/loading3.gif')");
+		function krpano () 
+		{
+			return document.getElementById("krpanoSWFObject");
+		}
+		
+		function choose(cur){
+			var $lis = $('.listTit>li'), len = $lis.length;		
+			$('.list').css({'transition':'-webkit-transform 500ms ease-out','transform':'translate3d(0, 0, 0)'});
+			$('.confirmBtn').css({'transition':'-webkit-transform 500ms ease-out','transform':'translate3d(790px, 630px, 0)'});
+			for(var i = 0; i < len; i++){
+				if($($lis[i]).data('type') === cur){
+					$($lis[i]).addClass('cur').siblings().removeClass('cur');
+					$('.rows').scrollTop(0);
+					$('.rows').eq(i).show().siblings().hide();
+				}				
+			}
+		}
+
+		$('.listTit').on('click', 'li', function(){
+			var idx = $(this).index();
+			$(this).addClass('cur').siblings().removeClass('cur');
+			$('.rows').scrollTop(0);
+			$('.rows').eq(idx).show().siblings().hide();
+		});
+
+		/* 切换KRP图片 */
+		$('.rows').on('tap click', 'li',  function(e){
+			e.preventDefault();
+
+			var $hot = $(this).data('type');				
+			var $url = $(this).children('img')[0].src;
+			var krp = document.getElementById("krpanoSWFObject");
+				krp.call('changeUrl('+$hot+','+$url+')');
+		});	
+
+	</script>
+</div>
+
+</body>
+</html>
